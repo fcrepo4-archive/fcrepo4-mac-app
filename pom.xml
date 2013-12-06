@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.fcrepo</groupId>
+    <artifactId>fcrepo</artifactId>
+    <version>4.0.0-alpha-3-SNAPSHOT</version>
+  </parent>
+  <artifactId>fcrepo-mac-app</artifactId>
+  <name>${project.artifactId}</name>
+  <description>The Fedora Mac Application</description>
+  <packaging>jar</packaging>
+  <properties>
+    <!-- for standalone operation -->
+    <jetty.version>8.1.13.v20130916</jetty.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.fcrepo</groupId>
+      <artifactId>fcrepo-webapp</artifactId>
+      <version>${project.version}</version>
+      <classifier>jetty-console</classifier>
+      <type>war</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>osxappbundle-maven-plugin</artifactId>
+        <version>1.0-alpha-1</version>
+        <configuration>
+          <mainClass>org.simplericity.jettyconsole.JettyConsoleBootstrapMainClass</mainClass>
+          <iconFile>${basedir}/src/main/resources/fedora.icns</iconFile>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>bundle</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>
